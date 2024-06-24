@@ -11,6 +11,7 @@ pipeline {
    stages {
    stage('Building image') {
       steps{
+          echo "ETAPA Building Image"
           sh '''
           cd webapp
           docker build -t testapp .
