@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   options {
-    timeout(time: 2, unit: 'MINUTES')
+    timeout(time: 9, unit: 'MINUTES')
   }
 
   environment {
@@ -13,7 +13,6 @@ pipeline {
       steps{
           echo "ETAPA Building Image"
           sh '''
-          cd webapp
           docker build -t testapp .
              '''  
         }
