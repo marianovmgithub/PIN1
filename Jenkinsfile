@@ -31,7 +31,7 @@ pipeline {
         script {
               echo "Deploying image: $IMAGEN:latest"
               docker.withRegistry( '', USUARIO ) {
-                  docker.image("${IMAGEN}:latest).push()
+                  docker.image("${IMAGEN}:latest").push()
                 }
         }
       }
