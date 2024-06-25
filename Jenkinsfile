@@ -7,6 +7,7 @@ pipeline {
 
   environment {
     ARTIFACT_ID = "elbuo8/webapp:${env.BUILD_NUMBER}"
+    IMAGEN = "marianovmdocker/testapp"
     USUARIO = 'ID_US_DOCKER'
   }
    stages {
@@ -27,11 +28,11 @@ pipeline {
     }
    stage('Deploy Image') {
       steps{
-        sh '''
-        docker login -u ${USUARIO) --password-stdin
-        docker tag testapp marianovmdocker/testapp:latest
-        docker push marianovmdocker/testapp:latest  
-        '''
+        script {
+              echo "Deploying image: $IMAGEN:latest"
+              docker.withRegistry( '', USUARIO ) {
+                  docker.build "$IMAGEN:latest".push()
+                }
         }
       }
     }
