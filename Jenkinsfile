@@ -30,8 +30,8 @@ pipeline {
       steps{
         script {
               echo "Deploying image: $IMAGEN:latest"
-              docker.withRegistry( '', USUARIO ) {
-                  docker.build "$IMAGEN:latest".push()
+              docker.withRegistry( '', $USUARIO ) {
+                  testapp.push()
                 }
         }
       }
